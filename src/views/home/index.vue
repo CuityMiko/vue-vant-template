@@ -1,83 +1,103 @@
-<!-- home -->
 <template>
-  <div class="index-container">
-    <div class="warpper">
-      <h1 class="demo-home__title"><img :src="url" /><span> VUE H5开发模板</span></h1>
-      <h2 class="demo-home__desc">
-        A vue h5 template with Vant UI
-      </h2>
+  <div class="container">
+    <div>
+      <Tabs v-model="active" animated color="#1890ff">
+        <Tab title="项目运营">
+          <Grid :column-num="3" :border="false">
+            <GridItem to="/user_query/list">
+              <van-image :src="iconUser" />
+              <span class="icon_title">用户查询</span>
+            </GridItem>
+            <GridItem to="/code_inspection/manual">
+              <van-image :src="iconInspect" />
+              <span class="icon_title">扫码巡检</span>
+            </GridItem>
+            <GridItem to="/weigh/list">
+              <van-image :src="iconWeigh" />
+              <span class="icon_title">称重</span>
+            </GridItem>
+            <GridItem to="/clear_plan/list">
+              <van-image :src="iconPlan" />
+              <span class="icon_title">清运规划</span>
+            </GridItem>
+            <GridItem to="/clear_supervise/list">
+              <van-image :src="iconInspector" />
+              <span class="icon_title">清运督察</span>
+            </GridItem>
+          </Grid>
+        </Tab>
+        <Tab title="收营员">
+          <Grid :column-num="3" :border="false">
+            <GridItem to="/coins_exchange">
+              <van-image :src="iconExchange" />
+              <span class="icon_title">扫码兑换</span>
+            </GridItem>
+            <GridItem to="/coins_record/list">
+              <van-image :src="iconDeal" />
+              <span class="icon_title">交易记录</span>
+            </GridItem>
+          </Grid>
+        </Tab>
+      </Tabs>
     </div>
-    <van-cell icon="success" v-for="item in list" :key="item" :title="item" />
   </div>
 </template>
 
 <script>
-import homeController from '~/controllers/home'
+import { Grid, GridItem, Tabs, Tab } from 'vant'
+import iconUser from '~/assets/img/images/icon_user.png'
+import iconInspect from '~/assets/img/images/icon_inspect.png'
+import iconWeigh from '~/assets/img/images/icon_weigh.png'
+import iconPlan from '~/assets/img/images/icon_plan.png'
+import iconInspector from '~/assets/img/images/icon_inspector.png'
+import iconExchange from '~/assets/img/images/icon_exchange.png'
+import iconDeal from '~/assets/img/images/icon_deal.png'
 
 export default {
+  loading: true,
+  components: {
+    Grid,
+    GridItem,
+    Tabs,
+    Tab
+  },
   data() {
     return {
-      url: '',
-      list: [
-        'Vue-cli4',
-        '配置多环境变量',
-        'VantUI 组件按需加载',
-        'Sass 全局样式',
-        'Webpack 4',
-        'Vuex 状态管理',
-        'Axios 封装及接口管理',
-        'Vue-router',
-        'Webpack 4 vue.config.js 基础配置',
-        '配置 proxy 跨域',
-        '配置 alias 别名',
-        '配置 打包分析',
-        '配置 externals 引入 cdn 资源',
-        '去掉 console.log',
-        'splitChunks 单独打包第三方模块',
-        '添加 IE 兼容',
-        'Eslint+Pettier 统一开发规范'
-      ]
+      iconUser,
+      iconInspect,
+      iconWeigh,
+      iconPlan,
+      iconInspector,
+      iconExchange,
+      iconDeal,
+      title: '舟山浙里办',
+      envTxt: ''
     }
   },
-
-  computed: {},
-
-  mounted() {
-    homeController.getVertifiCode().then(res => {
-      const { url } = res
-      this.url = url
-    })
+  head() {
+    return {
+      title: this.title
+    }
   },
-
+  mounted() {
+    try {
+      ZWJSBridge.onReady(() => {
+        console.log('初始化完成后，执行bridge方法')
+      })
+    } catch (error) {}
+  },
   methods: {}
 }
 </script>
+
 <style lang="scss" scoped>
-.index-container {
-  .warpper {
-    padding: 12px;
-    background: #fff;
-    .demo-home__title {
-      margin: 0 0 6px;
-      font-size: 32px;
-      .demo-home__title img,
-      .demo-home__title span {
-        display: inline-block;
-        vertical-align: middle;
-      }
-      img {
-        width: 32px;
-      }
-      span {
-        margin-left: 16px;
-        font-weight: 500;
-      }
-    }
-    .demo-home__desc {
-      margin: 0 0 20px;
-      color: rgba(69, 90, 100, 0.6);
-      font-size: 14px;
-    }
-  }
+.container {
+  color: #000;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 </style>

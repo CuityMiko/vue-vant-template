@@ -256,6 +256,9 @@ module.exports = {
         objectsInObjects: false
       }
     ],
-    'array-bracket-spacing': [2, 'never']
+    'array-bracket-spacing': [2, 'never'],
+    'no-empty': 'off',
+    'no-undef': 'off',
+    'object-curly-spacing': 'off'
   }
 }
