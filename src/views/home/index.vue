@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import homeController from '@/controllers/home'
+import homeController from '~/controllers/home'
 
 export default {
   data() {

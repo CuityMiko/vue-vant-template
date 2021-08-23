@@ -1,4 +1,4 @@
-import { getVertifiCode } from '@/services/home'
+import { getVertifiCode } from '~/services/home'
 
 export default {
   /**

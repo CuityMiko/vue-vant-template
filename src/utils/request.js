@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Toast } from 'vant'
 // 根据环境不同引入不同api地址
-import { baseApi, tokenKey } from '@config'
+import { baseApi, tokenKey } from '~config'
 // create an axios instance
 const service = axios.create({
   baseURL: baseApi, // url = base api url + request url

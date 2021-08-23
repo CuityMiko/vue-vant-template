@@ -1,7 +1,7 @@
 /**
  * 接口请求
  */
-import request from '@/utils/request'
+import request from '~/utils/request'
 
 const api = {
   GetVertifiCode: `/gbase/getVertifiCode`

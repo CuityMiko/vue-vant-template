@@ -102,8 +102,8 @@ module.exports = {
 
     // 别名 alias
     config.resolve.alias
-      .set('@', resolve('src'))
-      .set('@config', resolve('config'))
+      .set('~', resolve('src'))
+      .set('~config', resolve('config'))
       .set('assets', resolve('src/assets'))
       .set('controllers', resolve('src/controllers'))
       .set('services', resolve('src/services'))
